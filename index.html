@@ -11,7 +11,7 @@
     <header>
         <img src="farrel profile.jpeg" alt="farrel profile" class="farrel-profile">
         <h1>Farrel P.R.</h1>
-        <p>Portofolio Pribadi</p>
+        <p> Portofolio </p>
     </header>
 
     <section class="about">
@@ -26,13 +26,72 @@
             <h3>Juara Paski Bina 2 Surawiraaji</h3>
             <p>Prestasi dalam ajang paskibra tingkat daerah yang diselenggarakan di Pasuruan, Malang. Menampilkan kedisiplinan, kekompakan, dan semangat tim.</p>
             <p><strong>Lokasi:</strong> Pasuruan, Malang</p>
-            <p><strong>Prestasi:</strong> Juara</p>
+            <p><strong>Prestasi:</strong> Juara Bina 2</p>
         </div>
     </section>
 
     <footer>
         <p>© 2025 Farrel P.R. | All rights reserved</p>
     </footer>
+
+    <script>
+
+    const nameElement = document.querySelector("header h1");
+    const fullName = "Farrel P.R.";
+    let index = 0;
+    nameElement.textContent = "";
+
+    function typeWriter() {
+        if (index < fullName.length) {
+            nameElement.textContent += fullName.charAt(index);
+            index++;
+            setTimeout(typeWriter, 150);
+        }
+    }
+    typeWriter();
+
+    const sections = document.querySelectorAll('.about, .projects');
+
+    function revealOnScroll() {
+        for (let section of sections) {
+            const top = section.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            if (top < windowHeight - 100) {
+                section.style.opacity = 1;
+                section.style.transform = "translateY(0)";
+            }
+        }
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+
+    const scrollBtn = document.createElement("button");
+    scrollBtn.textContent = "⬆ Kembali ke Atas";
+    scrollBtn.style.position = "fixed";
+    scrollBtn.style.bottom = "20px";
+    scrollBtn.style.right = "20px";
+    scrollBtn.style.padding = "10px 15px";
+    scrollBtn.style.backgroundColor = "#088d0f";
+    scrollBtn.style.color = "white";
+    scrollBtn.style.border = "none";
+    scrollBtn.style.borderRadius = "5px";
+    scrollBtn.style.cursor = "pointer";
+    scrollBtn.style.display = "none";
+    document.body.appendChild(scrollBtn);
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            scrollBtn.style.display = "block";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    });
+
+    scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+</script>
+
 
 </body>
 </html>
